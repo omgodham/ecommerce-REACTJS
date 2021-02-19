@@ -1,0 +1,36 @@
+.navbar{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    margin: 0 auto;
+    
+}
+.nav-container{
+    list-style:none;
+    display: flex;
+    align-items: center;
+    margin:0 auto;
+}
+.left-content{
+    width: 80%;
+}
+.nav-logo{
+    font-weight: 900;
+    font-size: 25px !important;
+    color:blue;
+}
+.right-content i{
+    font-size: 20px;
+    margin: 0 10px;
+}
+.right-content i:hover {
+    color: blue;
+}
+.nav-links{
+font-size: 15px;
+margin-left:10px ;
+}
+.nav-links:hover{
+    color: blue;
+    cursor: pointer;
+}
