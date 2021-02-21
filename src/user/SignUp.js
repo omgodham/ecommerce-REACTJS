@@ -1,14 +1,13 @@
 import React,{useState} from 'react';
 import Base from '../core/Base';
-import {createUser} from './helper/index';
+import {createUser} from '../auth/helper/index';
 export default function SignUp() {
     
-    
     const [user,setUser] = useState({
-        name:"",
-        email:"",
-        password:"",
-        confirm_password:"",
+        name:'',
+        email:'',
+        password:'',
+        confirm_password:'',
         error:false,
         success:false
     });

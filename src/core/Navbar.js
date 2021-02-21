@@ -1,12 +1,14 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import "./Navbar.css";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import SearchIcon from '@material-ui/icons/Search';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import {isAuthenticated} from '../auth/helper/index';
 
 export default function Navbar() {
+
 const [boolean,setBoolean] = useState({
     search:false,
     cart:false,
@@ -15,7 +17,11 @@ const [boolean,setBoolean] = useState({
 });
 
 const {search,cart,account,accountBlock} = boolean;
-
+// const [auth,setAuth] = useState(false);
+// useEffect(()=>{
+//     setAuth(isAuthenticated());
+//     // console.log(auth);
+// },[]);
 
 const handleMouseOver = (name) =>{
     setBoolean({...boolean,[name]:true});
@@ -27,7 +33,7 @@ const handleMouseOut = (name) =>{
 const handleClick = () =>{
     setBoolean({...boolean,accountBlock: !accountBlock});
 }
-
+// console.log(isAuthenticated());
     return (
         <div className='navbar'>
             <div className='left-content'>
@@ -47,10 +53,13 @@ const handleClick = () =>{
             <ShoppingCartIcon className="i" onMouseOver={() => handleMouseOver('cart')} onMouseOut={() => handleMouseOut('cart')} />
             <span style={{display: !cart ? "none" : "" }}>Cart</span>
             </div>
-            <div  className='logo-info user-info'>
+            {!isAuthenticated() && <div  className='logo-info user-info'>
             <PermIdentityIcon className="i" onClick={handleClick} onMouseOver={() => handleMouseOver('account')} onMouseOut={() => handleMouseOut('account')} />
             {account && <span>My Account</span>}
-        </div>
+        </div>}
+            {isAuthenticated() && <div  className='logo-info user-info'>
+            <h6>Welcome {isAuthenticated().user.name}</h6>
+        </div>}
         { accountBlock && <div className='info-popup'>
                 <span><PermIdentityIcon style={{marginRight:"2px"}} /><Link to='/signin'>Sign In</Link></span>
                 <span><PersonAddIcon style={{marginRight:"2px"}} /><Link to='/signup'>Register</Link></span>

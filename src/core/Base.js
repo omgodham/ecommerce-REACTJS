@@ -1,6 +1,7 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import Navbar from './Navbar';
 export default function Base({children,title='This is the title'}) {
+
     return (
         <div className='text-center'>
         <Navbar />
