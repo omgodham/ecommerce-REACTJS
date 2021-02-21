@@ -44,10 +44,14 @@ const handleError = (error) =>{
 }
 
 const doRedirect = (success) =>{
-    console.log(success);
+    // console.log(success);
     console.log(isAuthenticated());
     if(success){
-        return <Redirect to='/user/dashboard' />
+        if(isAuthenticated().user.role === 0){
+            return <Redirect to='/user/dashboard' />
+        }else if(isAuthenticated().user.role === 1){
+            return <Redirect to='/admin/dashboard' />
+        }
     }
     if(isAuthenticated()){
         return <Redirect to='/' />

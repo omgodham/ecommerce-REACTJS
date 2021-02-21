@@ -1,22 +1,23 @@
 import React,{useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link,Redirect} from 'react-router-dom';
 import "./Navbar.css";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import SearchIcon from '@material-ui/icons/Search';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import {isAuthenticated} from '../auth/helper/index';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import {isAuthenticated,signout} from '../auth/helper/index';
 
 export default function Navbar() {
 
 const [boolean,setBoolean] = useState({
-    search:false,
     cart:false,
     account:false,
+    logout:false,
     accountBlock:false
 });
-
-const {search,cart,account,accountBlock} = boolean;
+const [redirect,setRedirect] = useState(false);
+const {cart,account,accountBlock,logout} = boolean;
 // const [auth,setAuth] = useState(false);
 // useEffect(()=>{
 //     setAuth(isAuthenticated());
@@ -32,6 +33,21 @@ const handleMouseOut = (name) =>{
   
 const handleClick = () =>{
     setBoolean({...boolean,accountBlock: !accountBlock});
+}
+
+const doLogout = () =>{
+    signout(isAuthenticated().token).then(data => {
+        console.log(data);
+        if(data.error){
+            alert(data.error);
+        }else{
+            setRedirect(true);
+            }
+    });
+}
+
+const performRedirect = (redirect) => {
+    return redirect && (<Redirect to ='/' />) 
 }
 // console.log(isAuthenticated());
     return (
@@ -60,11 +76,16 @@ const handleClick = () =>{
             {isAuthenticated() && <div  className='logo-info user-info'>
             <h6>Welcome {isAuthenticated().user.name}</h6>
         </div>}
+        {isAuthenticated() && <div  className='logo-info user-info'>
+            <ExitToAppIcon className="i" onClick={doLogout} onMouseOver={() => handleMouseOver('logout')} onMouseOut={() => handleMouseOut('logout')} />
+            {logout && <span>logout</span>}
+        </div>}
         { accountBlock && <div className='info-popup'>
                 <span><PermIdentityIcon style={{marginRight:"2px"}} /><Link to='/signin'>Sign In</Link></span>
                 <span><PersonAddIcon style={{marginRight:"2px"}} /><Link to='/signup'>Register</Link></span>
             </div>}
         </div>
+        {performRedirect(redirect)}
         </div>
     )
 }

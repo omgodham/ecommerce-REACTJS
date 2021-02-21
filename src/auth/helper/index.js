@@ -46,6 +46,15 @@ export const isAuthenticated = () => {
          }
 }
 
-export const signout = (user) =>{
-
+export const signout = (token) =>{
+    console.log(token);
+    localStorage.removeItem('auth');
+    return fetch(`${API}/signout`,{
+        method:'GET',
+        headers:{
+            Authorization:`Bearer ${token}`
+        }
+    }).then(response =>{ return response.json()})
+    .catch(err => console.log(err));
+    
 }

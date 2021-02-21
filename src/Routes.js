@@ -6,6 +6,9 @@ import AdminRoute from './auth/helper/AdminRoute';
 import SignIn from './user/SignIn';
 import SignUp from './user/SignUp';
 import UserDashBoard from './user/UserDashBoard';
+import AdminDashboard from './user/AdminDashboard';
+
+
 export default function Routes() {
     return (
         <Router>
@@ -14,6 +17,7 @@ export default function Routes() {
             <Route exact path='/signin' component={SignIn} />
             <Route exact path='/signup' component={SignUp} />
             <PrivateRoute exact path='/user/dashboard' component={UserDashBoard} />
+            <AdminRoute exact path='/admin/dashboard' component={AdminDashboard} />
         </Switch>
         </Router>
     )
