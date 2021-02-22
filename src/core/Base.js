@@ -9,7 +9,7 @@ export default function Base({children,title='This is the title'}) {
             <h1 className="text-black">{title}</h1>
             </div>
             <div>{children}</div>
-            <footer>
+            <footer style={{backgroundColor:'white'}}>
                 <h1 className="text-black">This is footer</h1>
             </footer>
         </div>

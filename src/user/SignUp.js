@@ -69,7 +69,7 @@ const handleSuccess = (success) =>{
                         <label htmlFor="exampleInputPassword1" className="form-label">Confirmed Password</label>
                         <input type="password" onChange={handleChange} className="form-control" value={confirm_password} name='confirm_password' id="exampleInputPassword1" />
                 </div>
-                            <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
+                            <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Sign Up</button>
             </form> 
         </Base>
     )

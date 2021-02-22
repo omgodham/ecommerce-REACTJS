@@ -72,7 +72,7 @@ const doRedirect = (success) =>{
                         <input type="password" onChange={handleChange} name='password' value={password} className="form-control" id="exampleInputPassword1"/>
                 </div>
                
-                            <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
+                            <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Signin</button>
             </form> 
             {doRedirect(success)}
         </Base>
