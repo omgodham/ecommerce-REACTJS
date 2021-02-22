@@ -1,38 +1,56 @@
 import "./Card.css";
-import React,{useEffect, useState} from 'react';
+import React,{useState} from 'react';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
-export default function Card({name,price}) {
+export default function Card({key,name='Name',price='$10'}) {
 
- useEffect(()=>{
-     console.log('under useeffect');
-    const card = document.getElementById('card');
-    const ele = document.getElementById('card-body');
-    const ele2 = document.getElementsByClassName('btn-section');
-    card.addEventListener('mouseover',() =>{
-        console.log('over');
-        ele.classList.add('change-card');
-        ele2[0].classList.add('chage-btn-section');
+       const [flag,setFlag] = useState(false);
+       const [btnStyle,setBtnStyle] = useState({
+        position: "absolute",
+        bottom:"-50px",
+        right: "0px",
+        left: "0px",
+        zIndex:"-1",
+        transition:"all 0.5s ease-in-out"
+       });
+
+
+const handleMouseOver = () => {
     
-    });
-    card.addEventListener('mouseout',() =>{
-        console.log('out');
+    const ele = document.getElementById(name); //idName should be unique on which it is being hover
+    ele.classList.add('change-card');
+    setBtnStyle({ position: "absolute",
+    bottom:"2px",
+    right: "0px",
+    left: "0px",
+    zIndex:"1",
+    transition: "all 0.5s ease-in-out"});     
+}   
+
+const handleMouseOut = () =>{
+        setFlag(!flag);
+        const ele = document.getElementById(name);
         ele.classList.remove('change-card');
-        ele2[0].classList.remove('chage-btn-section');
-    });
- },[]);
-        
+            setBtnStyle({ position: "absolute",
+            bottom:"-50px",
+            right: "0px",
+            left: "0px",
+            zIndex:"-1",
+            transition: "all 0.5s ease-in-out"});
+    }
 
     return (
-        <div className="card" id='card' style={{width: "18rem"}} >
-        <img src="https://images.pexels.com/photos/2562992/pexels-photo-2562992.png?auto=compress&cs=tinysrgb&dpr=1&w=500" className="card-img-top" alt="" height='300px' width='50px'/>
-        <div className="card-body" id='card-body'>
+        <div className="card" id='card' style={{width: "18rem"}} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+        <img src="https://images.pexels.com/photos/2562992/pexels-photo-2562992.png?auto=compress&cs=tinysrgb&dpr=1&w=500" height='300px' className="card-img-top" alt="" />
+        <var id={name}> 
+       <div className="card-body" id='card-body'>
           <h5 className="card-title">{name}</h5>
           <p className="card-text">{price}</p>
         </div>
-        <div className='btn-section'>
+        </var>
+       <div style={btnStyle}>
           <a href="#" className="btn btn-primary"><ShoppingCartIcon/>ADD TO CART</a>
         </div>
-      </div>
+      </div>     
     )
 }

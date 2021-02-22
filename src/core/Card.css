@@ -1,32 +1,15 @@
+.card {
+  box-shadow: 0px 0px 2px gray;
+  height: 400px;
+  position: relative;
+  margin: 10px;
+}
 
-.card{
-    box-shadow: 0px 0px 2px gray;
-    height: 400px;
-    position: relative;
-    margin: 10px;
+.card-body{
+    transition: all 0.5s ease-in-out;
 }
-.card-body p{
-    margin-bottom: 0px !important;
-}
-.btn-section{
-   position: absolute;
-   bottom:-50px;
-   right: 0px;
-   left: 0px;
-    z-index: -1;
-}
-.chage-btn-section{
-    z-index: 1;
-    position: absolute;
-    bottom:0px;
-    right: 0px;
-    left: 0px;
-    transition: all 0.7s ease-in-out;
-    padding-bottom: 10px;
-}
-.change-card{
-    /* z-index: 1; */
-    background: white;
-    margin-top: -60px; 
-    transition: all 0.7s ease-in-out;  
+.change-card {
+  background: white;
+  margin-top: -60px;
+  transition: all 0.5s ease-in-out;
 }
