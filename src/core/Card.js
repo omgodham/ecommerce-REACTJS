@@ -10,8 +10,7 @@ export default function Card({key,name='Name',price='$10'}) {
         bottom:"-50px",
         right: "0px",
         left: "0px",
-        zIndex:"-1",
-        transition:"all 0.5s ease-in-out"
+        zIndex:"-1"
        });
 
 
@@ -36,13 +35,14 @@ const handleMouseOut = () =>{
             right: "0px",
             left: "0px",
             zIndex:"-1",
-            transition: "all 0.5s ease-in-out"});
+            marginTop:"0px",
+            transition:"all 0.3s ease-in-out"});
     }
 
     return (
         <div className="card" id='card' style={{width: "18rem"}} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-        <img src="https://images.pexels.com/photos/2562992/pexels-photo-2562992.png?auto=compress&cs=tinysrgb&dpr=1&w=500" height='300px' className="card-img-top" alt="" />
-        <var id={name}> 
+        <img src="https://images.pexels.com/photos/2494608/pexels-photo-2494608.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" height='300px' className="card-img-top" alt="" />
+        <var id={name}>  {/*we can use div also no worry*/}
        <div className="card-body" id='card-body'>
           <h5 className="card-title">{name}</h5>
           <p className="card-text">{price}</p>
