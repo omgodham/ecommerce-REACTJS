@@ -1,0 +1,18 @@
+.admin-dashboard{
+width: 90%;
+margin: 10px auto;
+display:grid;
+grid-template-columns: 0.3fr 0.7fr;
+box-shadow: 0px 0px 3px black;
+padding: 5px;
+}
+.list-group{
+    list-style: none;
+}
+.admin-info{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

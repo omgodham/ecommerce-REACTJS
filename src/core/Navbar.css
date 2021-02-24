@@ -30,6 +30,7 @@
     color:blue;
 }
 .right-content{
+    
     display: flex;
     align-items: center;
 }
@@ -54,6 +55,7 @@
 }
 
 .info-popup{
+    background: white;
     position: absolute;
     right: 0px;
     top:45px;
@@ -61,7 +63,7 @@
     padding:20px 10px;
     display: flex;
     flex-direction: column;
-    
+    z-index: 9;
 }
 .info-popup span{
     box-shadow: none;

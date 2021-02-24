@@ -1,0 +1,11 @@
+.carousel{
+   
+    
+}
+.carousel-item {
+ height: 90vh;
+}
+.carousel-item img,video{
+    height:100% ;
+     width: 100%; 
+}

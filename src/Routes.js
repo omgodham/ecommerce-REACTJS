@@ -17,7 +17,7 @@ export default function Routes() {
             <Route exact path='/signin' component={SignIn} />
             <Route exact path='/signup' component={SignUp} />
             <PrivateRoute exact path='/user/dashboard' component={UserDashBoard} />
-            <AdminRoute exact path='/admin/dashboard' component={AdminDashboard} />
+            <Route exact path='/admin/dashboard' component={AdminDashboard} />
         </Switch>
         </Router>
     )

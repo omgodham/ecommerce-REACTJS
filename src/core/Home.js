@@ -1,46 +1,49 @@
 import React,{useState} from 'react';
 import Base from './Base';
 import '../styles.css';
+import "./Home.css";
 import Card from './Card';
 import Carousel from 'react-bootstrap/Carousel';
+import img1 from '../home/img1.jpg';
+import img2 from '../home/img2.jpg';
+import video from "../home/video.mp4";
 export default function Home() {
 const arr = [1,2,33];
 
 const ShowCarousel = () =>{
-    return<Carousel style={{height:'400px'}}>
-    <Carousel.Item>
+    return <Carousel className='carousel'>
+    <Carousel.Item className='carousel-item'>
       <img
-        className="d-block w-100"
-        src="https://cdn.pixabay.com/photo/2019/07/12/18/22/lamp-4333322__340.jpg" style={{height:'300px'}}
+        src={img1} 
         alt="First slide"
       />
       <Carousel.Caption>
-        <h3>First slide label</h3>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        <button className='btn btn-primary'>SHOP NOW</button>
+        <p style={{color:'black',fontWeight:'900'}}>BRAND NEW STYLISH PRODUCTS ON SALE</p>
       </Carousel.Caption>
     </Carousel.Item>
+    
     <Carousel.Item>
       <img
-        className="d-block w-100"
-        src="https://cdn.pixabay.com/photo/2020/04/04/16/07/stadttheater-5002861__340.jpg"
+        src={img2}
         alt="Second slide"
-      />
-  
+      />  
       <Carousel.Caption>
-        <h3>Second slide label</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <button className='btn btn-light'>SHOP NOW</button>
+      <p style={{color:'white',fontWeight:'900'}}>GO AHEAD AND BUY SOMETHING FOR LOVED ONES</p>
       </Carousel.Caption>
     </Carousel.Item>
+
     <Carousel.Item>
-      <img
-        className="d-block w-100"
-        src="https://cdn.pixabay.com/photo/2021/02/08/16/03/dinosaur-5995333__340.png"
-        alt="Third slide"
-      />
-  
-      <Carousel.Caption>
-        <h3>Third slide label</h3>
-        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+      <div>
+      <video autoPlay muted controls loop>
+  <source src={video} type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+  </div>
+  <Carousel.Caption>
+      <button className='btn btn-warning'>SHOP NOW</button>
+      <p style={{color:'white',fontWeight:'900'}}>EXPLORE OUR SHOP IN THIS CITIES</p>
       </Carousel.Caption>
     </Carousel.Item>
   </Carousel>
@@ -48,7 +51,7 @@ const ShowCarousel = () =>{
 
 
     return (
-        <Base title='Home'>
+        <Base title=''>
         {ShowCarousel()}
           <div className='container' style={{backgroundColor:"white"}}>
           <div className='row'>
