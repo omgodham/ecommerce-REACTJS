@@ -11,7 +11,7 @@
     margin:0 auto;
 }
 .left-content{
-    width: 60%;
+    width: 50%;
 }
 .nav-links{
     font-size: 15px;
@@ -30,7 +30,6 @@
     color:blue;
 }
 .right-content{
-    
     display: flex;
     align-items: center;
 }

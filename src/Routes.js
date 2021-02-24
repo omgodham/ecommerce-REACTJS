@@ -7,6 +7,7 @@ import SignIn from './user/SignIn';
 import SignUp from './user/SignUp';
 import UserDashBoard from './user/UserDashBoard';
 import AdminDashboard from './user/AdminDashboard';
+import CreateProduct from './admin/CreateProduct';
 
 
 export default function Routes() {
@@ -17,7 +18,8 @@ export default function Routes() {
             <Route exact path='/signin' component={SignIn} />
             <Route exact path='/signup' component={SignUp} />
             <PrivateRoute exact path='/user/dashboard' component={UserDashBoard} />
-            <Route exact path='/admin/dashboard' component={AdminDashboard} />
+            <AdminRoute exact path='/admin/dashboard' component={AdminDashboard} />
+            <AdminRoute exact path='/admin/create/product' component={CreateProduct} />
         </Switch>
         </Router>
     )

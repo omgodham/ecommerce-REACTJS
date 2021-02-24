@@ -12,19 +12,19 @@ export default function AdminDashboard() {
                         <Link  className="list-group-item disabled bg-danger text-white">Admin Actions</Link>
                     </li>
                     <li>
-                        <Link to='/create/product' className="list-group-item">Create Product</Link>
+                        <Link to='/admin/create/product' className="list-group-item">Create Product</Link>
                     </li>
                     <li>
-                        <Link to='/create/category' className="list-group-item">Create Category</Link>
+                        <Link to='/admin/create/category' className="list-group-item">Create Category</Link>
                     </li>
                     <li>
-                        <Link to='/manage/products' className="list-group-item">Manage Product</Link>
+                        <Link to='/admin/manage/products' className="list-group-item">Manage Product</Link>
                     </li>
                     <li>
-                        <Link to='/manage/categories' className="list-group-item">Manage Category</Link>
+                        <Link to='/admin/manage/categories' className="list-group-item">Manage Category</Link>
                     </li>
                     <li>
-                        <Link to='/manage/orders' className="list-group-item">Manage Orders</Link>
+                        <Link to='/admin/manage/orders' className="list-group-item">Manage Orders</Link>
                     </li>
                 </ul>
             </div> 
