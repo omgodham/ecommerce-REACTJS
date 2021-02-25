@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import Base from './Base';
 import '../styles.css';
 import "./Home.css";
@@ -7,8 +7,25 @@ import Carousel from 'react-bootstrap/Carousel';
 import img1 from '../home/img1.jpg';
 import img2 from '../home/img2.jpg';
 import video from "../home/video.mp4";
+import {getAllProducts} from "../admin/helper/index";
+import {isAuhtenticated} from "../auth/helper/index";
 export default function Home() {
-const arr = [1,2,33];
+const [products,setProducts] = useState([]);
+//const {user,token} = isAuthenticated();
+const [error,setError] = useState(false);
+useEffect(() => {
+getProducts();
+},[]);
+
+
+const getProducts = () => {
+getAllProducts().then(data =>{
+  if(data.error)
+  setError(data.error);
+  else
+  setProducts(data);
+}).catch(err => console.log(err))
+}
 
 const ShowCarousel = () =>{
     return <Carousel className='carousel'>
@@ -53,11 +70,11 @@ const ShowCarousel = () =>{
     return (
         <Base title=''>
         {ShowCarousel()}
-          <div className='container' style={{backgroundColor:"white"}}>
+          <div className='container-fluid' style={{backgroundColor:"white",width:'95%',margin:"20px auto"}}>
           <div className='row'>
         {
-            arr.map((item,index) => {
-                return <Card key={index} name={`Adidas Shoes${item}`} className='col-md-3' price={item}/>
+            products.map((item,index) => {
+                return <Card key={index} id={item._id} name={item.name} className='col-md-4' price={item.price}/>
             })
         }
           </div>   

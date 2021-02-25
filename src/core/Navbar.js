@@ -74,7 +74,7 @@ const performRedirect = (redirect) => {
             {account && <span>My Account</span>}
         </div>}
             {isAuthenticated() && <div  className='logo-info user-info'>
-            <h6>Welcome {isAuthenticated().user.name}</h6>
+            <h6 style={{textTransform:'capitalize'}}>Welcome {isAuthenticated().user.name}</h6>
         </div>}
         {isAuthenticated() && <div  className='logo-info user-info'>
             <ExitToAppIcon className="i" onClick={doLogout} onMouseOver={() => handleMouseOver('logout')} onMouseOut={() => handleMouseOut('logout')} />

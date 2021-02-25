@@ -34,14 +34,14 @@ export const authinticate = (user,next) =>{ //always do middleware dont make a f
 
 export const isAuthenticated = () => {
     if(typeof window == "undefined"){
-        console.log("window undefined");
+        // console.log("window undefined");
         return false;
     }
          if(localStorage.getItem("auth")){
-            console.log("window defined");
+            // console.log("window defined");
              return JSON.parse(localStorage.getItem("auth"));
          }else {
-            console.log("window defined but");
+            // console.log("window defined but");
              return false;
          }
 }

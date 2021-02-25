@@ -1,10 +1,13 @@
 import "./Card.css";
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { getProductPhoto } from "../admin/helper";
 
-export default function Card({key,name='Name',price='$10'}) {
+export default function Card({id,name='Name',price='$10'}) {
 
        const [flag,setFlag] = useState(false);
+    
+
        const [btnStyle,setBtnStyle] = useState({
         position: "absolute",
         bottom:"-50px",
@@ -13,9 +16,7 @@ export default function Card({key,name='Name',price='$10'}) {
         zIndex:"-1"
        });
 
-
 const handleMouseOver = () => {
-    
     const ele = document.getElementById(name); //idName should be unique on which it is being hover
     ele.classList.add('change-card');
     setBtnStyle({ position: "absolute",
@@ -41,11 +42,11 @@ const handleMouseOut = () =>{
 
     return (
         <div className="card" id='card' style={{width: "18rem"}} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-        <img src="https://images.pexels.com/photos/2494608/pexels-photo-2494608.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" height='300px' className="card-img-top" alt="" />
+        <img src={getProductPhoto(id)} height='300px' className="card-img-top" alt="" />
         <var id={name}>  {/*we can use div also no worry*/}
        <div className="card-body" id='card-body'>
-          <h5 className="card-title">{name}</h5>
-          <p className="card-text">{price}</p>
+          <h5 className="card-title" style={{textTransform:'capitalize'}}>{name}</h5>
+          <p className="card-text">${price}</p>
         </div>
         </var>
        <div style={btnStyle}>
