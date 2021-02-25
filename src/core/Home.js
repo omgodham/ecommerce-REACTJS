@@ -70,7 +70,7 @@ const ShowCarousel = () =>{
     return (
         <Base title=''>
         {ShowCarousel()}
-          <div className='container-fluid' style={{backgroundColor:"white",width:'95%',margin:"20px auto"}}>
+          <div className='container-fluid pb-5' style={{backgroundColor:"white",width:'95%',margin:"20px auto"}}>
           <div className='row'>
         {
             products.map((item,index) => {

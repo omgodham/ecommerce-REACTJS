@@ -123,7 +123,7 @@ export const getProductPhoto = (productId) => {
 
 //delete product
 export const deleteProduct = (userId,token,productId) =>{
-    return fetch(`${API}/${productId}/${userId}`,{
+    return fetch(`${API}/product/${productId}/${userId}`,{
         method:'DELETE',
         headers:{
             Accept:'application/json',
@@ -135,7 +135,7 @@ export const deleteProduct = (userId,token,productId) =>{
 
 //delete category
 export const deleteCategory = (userId,token,categoryId) =>{
-    return fetch(`${API}/${categoryId}/${userId}`,{
+    return fetch(`${API}/category/${categoryId}/${userId}`,{
         method:'DELETE',
         headers:{
             Accept:'application/json',
