@@ -50,7 +50,7 @@ export default function ManageCategories() {
             {categories.map((category,index) => {
                 return category.main && <div className=' d-flex row p-3 ' key={index}>
                 <h4 className='col-md-3' style={{textTransform:'capitalize'}}>{category.name}</h4>
-                <Link to='/update/category' className='btn btn-success col-md-3 mr-2'>Update</Link>
+                <Link to={`/admin/update/category/${category._id}`} className='btn btn-success col-md-3 mr-2'>Update</Link>
                 <button onClick={()=>{handleDelete(category._id)}} className='btn btn-danger col-md-3'>Delete</button>
             </div>
             })
@@ -59,7 +59,7 @@ export default function ManageCategories() {
             {categories.map((category,index) => {
                 return !category.main && <div className=' d-flex row p-3' key={index}>
                 <h4 className='col-md-3' style={{textTransform:'capitalize'}}>{category.name}</h4>
-                <Link to='/update/category' className='btn btn-success col-md-3 mr-2'>Update</Link>
+                <Link to={`/admin/update/category/${category._id}`} className='btn btn-success col-md-3 mr-2'>Update</Link>
                 <button onClick={()=>{handleDelete(category._id)}} className='btn btn-danger col-md-3'>Delete</button>
             </div>
             })

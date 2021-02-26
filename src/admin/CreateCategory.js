@@ -17,10 +17,9 @@ export default function CreateCategory() {
     const {user,token} = isAuthenticated();
 
     const handleChange = name => event => {
-        name === 'categoryType' && name.value === 'category' && 
-        setValues({...values,main:true});
-        setValues({...values,[name]:event.target.value});
-        console.log(values);
+        name === "categoryType" && event.target.value === "category" ?
+        setValues({...values,[name]:event.target.value,main: true}) :
+        setValues({...values,[name]:event.target.value,main: false})
     }
 
     const handleClick = event =>{
