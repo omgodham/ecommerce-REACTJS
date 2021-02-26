@@ -11,6 +11,7 @@ import CreateProduct from './admin/CreateProduct';
 import CreateCategory from "./admin/CreateCategory";
 import ManageCategories from "./admin/ManageCategories";
 import UpdateCategory from './admin/UpdateCategory';
+import ManageProducts from './admin/ManageProducts';
 export default function Routes() {
     return (
         <Router>
@@ -23,6 +24,7 @@ export default function Routes() {
             <AdminRoute exact path='/admin/create/product' component={CreateProduct} />
             <AdminRoute exact path='/admin/create/category' component={CreateCategory} />
             <AdminRoute exact path='/admin/manage/categories' component={ManageCategories} />
+            <AdminRoute exact path='/admin/manage/products' component={ManageProducts} />
             <AdminRoute  path='/admin/update/category/:categoryId' component={UpdateCategory} />
         </Switch>
         </Router>
