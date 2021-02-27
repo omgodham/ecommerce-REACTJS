@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import Base from './Base';
 import '../styles.css';
 import "./Home.css";
@@ -69,8 +70,42 @@ const ShowCarousel = () =>{
 
     return (
         <Base title=''>
-        {ShowCarousel()}
-          <div className='container-fluid pb-5' style={{backgroundColor:"white",width:'95%',margin:"20px auto"}}>
+        {/* {ShowCarousel()} */}
+        <div className='categories'>
+          <div className='left-one'>
+              <div className='sale'>
+                <img src='https://cdn.shopify.com/s/files/1/0130/5041/3114/files/demo01_03_650x.jpg?v=1542298540' alt=""/>
+                 <Link to='/' className='btn btn-info btn-lg'>SALE</Link>
+              </div>
+              <div className='new'>
+              <img src='https://cdn.shopify.com/s/files/1/0130/5041/3114/files/demo01_04_325x.jpg?v=1542298540' />
+              <Link to='/' className='btn btn-info btn-lg'>NEW</Link>
+              </div>
+          </div>
+          <div className='center-one women'>
+          <img src='https://cdn.shopify.com/s/files/1/0130/5041/3114/files/demo01_06_325x.jpg?v=1542298540' />
+          <Link to='/' className='btn btn-info btn-lg'>WOMEN</Link>
+          </div>
+          <div className='right-one'>
+          <div className='right-top'>
+            <div className='men'>
+            <img src='https://cdn.shopify.com/s/files/1/0130/5041/3114/files/demo01_05_325x.jpg?v=1542298540' />
+            <Link to='/' className='btn btn-info btn-lg'>MEN</Link>
+            </div>
+            <div className='accessories'>
+            <img src='https://cdn.shopify.com/s/files/1/0130/5041/3114/files/demo01_07_325x.jpg?v=1542298540' />
+            <Link to='/' className='btn btn-info btn-lg'>ACCESSORIES</Link>
+            </div>
+          </div>
+          <div className='right-bottom'>
+          <img src='https://cdn.shopify.com/s/files/1/0130/5041/3114/files/demo01_08_669x.jpg?v=1542298540' />
+          <Link to='/' className='btn btn-info btn-lg'>SHOES</Link>
+          </div>
+          </div>
+        </div>
+          <div className='container-fluid pb-5 text-center' style={{backgroundColor:"white",width:'95%',margin:"20px auto"}}>
+          <h4>BEST SELLER</h4>
+          <h6>TOP PRODUCTS OF THIS WEEK</h6>
           <div className='row'>
         {
             products.map((item,index) => {
@@ -79,6 +114,7 @@ const ShowCarousel = () =>{
         }
           </div>   
         </div>
+
         </Base>
     )
 }

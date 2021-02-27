@@ -54,7 +54,7 @@ const performRedirect = (redirect) => {
         <div className='navbar'>
             <div className='left-content'>
                 <ul className='nav-container'>
-                    <li className='nav-links nav-logo'>wookie</li>
+                    <li className='nav-links nav-logo'>wokiee</li>
                     <li><Link to='/' className='nav-links'>HOME</Link></li>
                     <li><Link to='/' className='nav-links'>MEN</Link></li>
                     <li><Link to='/' className='nav-links'>WOMEN</Link></li>
