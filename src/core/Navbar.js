@@ -56,8 +56,8 @@ const performRedirect = (redirect) => {
                 <ul className='nav-container'>
                     <li className='nav-links nav-logo'>wokiee</li>
                     <li><Link to='/' className='nav-links'>HOME</Link></li>
-                    <li><Link to='/' className='nav-links'>MEN</Link></li>
-                    <li><Link to='/' className='nav-links'>WOMEN</Link></li>
+                    <li><Link to='/collections/men' className='nav-links'>MEN</Link></li>
+                    <li><Link to='/collections/women' className='nav-links'>WOMEN</Link></li>
                 </ul>
             </div>
             <div className='right-content'>

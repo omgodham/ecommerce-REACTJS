@@ -23,7 +23,7 @@ const handleDelete = (id) =>{
         if(data.error) console.log(data.error)
         else {    
             getProducts();
-            alert('category deleted successfully');
+            alert('product deleted successfully');
         }
     });
 }

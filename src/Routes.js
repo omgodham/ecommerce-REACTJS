@@ -13,6 +13,7 @@ import ManageCategories from "./admin/ManageCategories";
 import UpdateCategory from './admin/UpdateCategory';
 import ManageProducts from './admin/ManageProducts';
 import UpdateProduct  from './admin/UpdateProduct';
+import CategoryProducts from './core/CategoryProducts';
 export default function Routes() {
     return (
         <Router>
@@ -20,6 +21,7 @@ export default function Routes() {
             <Route exact path='/' component={Home} />
             <Route exact path='/signin' component={SignIn} />
             <Route exact path='/signup' component={SignUp} />
+            <Route exact path='/collections/:category' component={CategoryProducts} />
             <PrivateRoute exact path='/user/dashboard' component={UserDashBoard} />
             <AdminRoute exact path='/admin/dashboard' component={AdminDashboard} />
             <AdminRoute exact path='/admin/create/product' component={CreateProduct} />

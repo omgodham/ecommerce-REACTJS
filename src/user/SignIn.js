@@ -2,17 +2,20 @@ import React,{useState} from 'react';
 import Base from '../core/Base';
 import {authinticate,getUser, isAuthenticated} from '../auth/helper/index';
 import {Redirect} from 'react-router-dom';
+import ReactLoading from 'react-loading';
 export default function SignIn() {
     
+    //TODO:Add loading page
     const [user,setUser] = useState({
         email:'',
         password:'',
         error:false,
-        success:false
+        success:false,
+        isLoading:false
     });
     // const [auth,setAuth] = useState({});
     // const {user,token} = isAuthenticated();
-const {email,password,error,success} = user;
+const {email,password,error,success,isLoading} = user;
 
 
 const handleChange = (event) => {
@@ -31,11 +34,12 @@ const handleSubmit = (event) =>{
         else{
             // setAuth(data);
             authinticate(data,()=>{
-                setUser({email:"",password:"",error:false,success:true});
+                setUser({email:"",password:"",error:false,success:true,isLoading:true});
             });
         }
     });
 }
+
 
 const handleError = (error) =>{
     return ( error && <div className="alert alert-danger" role="alert">
@@ -62,6 +66,7 @@ const doRedirect = (success) =>{
         <Base title='SIGN IN'>
             <form className='text-left' style={{width:"50%",margin:"0 auto"}}>
             {handleError(error)}
+            {/* {isLoading && <ReactLoading  type={"bars"} color={"grey"}/>} */}
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
                     <input type="email" onChange={handleChange} className="form-control" name='email' value={email} id="exampleInputEmail1" aria-describedby="emailHelp" />
