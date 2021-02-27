@@ -34,7 +34,7 @@ const card = (index,name,photo,price,id) =>{
     <div className="card-body">
       <h5 className="card-title">{name}</h5>
       <p className="card-text">${price}</p>
-      <Link to="" className="btn btn-success m-2">Update</Link>
+      <Link to={`/admin/update/product/${id}`} className="btn btn-success m-2">Update</Link>
       <button className="btn btn-danger m-2" onClick={() => handleDelete(id)}>Delete</button>
     </div>
   </div>
