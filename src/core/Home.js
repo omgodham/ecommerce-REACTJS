@@ -109,7 +109,7 @@ const ShowCarousel = () =>{
           <div className='row'>
         {
             products.map((item,index) => {
-                return <Card key={index} id={item._id} name={item.name} className='col-md-4' price={item.price}/>
+                return <Card key={index} id={item._id} name={item.name} className='col-md-4' price={item.price} isHome={true}/>
             })
         }
           </div>   

@@ -1,0 +1,44 @@
+.cart{
+    display: grid;
+    grid-template-columns: 0.35fr 0.20fr 0.20fr 0.30fr;
+    padding: 5px;
+    border-bottom:1px solid rgba(0,0,0,0.3);
+    border-top:1px solid rgba(0,0,0,0.3);
+   width: 90%;
+   margin: 5px auto;
+   font-weight: 600;
+}
+.left-block{
+    display: flex;
+    align-items: center;
+}
+.left-block img{
+    height: 150px;
+    width: 120px;
+}
+.price{
+    display: flex;
+    align-items: center;
+    justify-self: center;
+}
+.center-block{
+background:  rgb(236, 236, 236);
+height: fit-content;
+width: fit-content;
+margin: auto auto;
+}
+.center-block button{
+    border: none;
+    outline: none;
+    background:  rgb(236, 236, 236);
+    padding: 0 10px;
+}
+.right-block{
+    display: flex;
+    align-items: center;
+    justify-self: center;
+}
+.delete-icon:hover{
+    cursor: pointer;
+    color:blue;
+}

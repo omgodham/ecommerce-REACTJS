@@ -1,9 +1,10 @@
 import "./Card.css";
 import React,{useEffect, useState} from 'react';
+import {Redirect} from 'react-router-dom'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { getProductPhoto } from "../admin/helper";
-
-export default function Card({id,name='Name',price='$10'}) {
+import {addToCart} from './helper';
+export default function Card({id,name='Name',price='$10',isHome=true}) {
 
        const [flag,setFlag] = useState(false);
     
@@ -40,6 +41,16 @@ const handleMouseOut = () =>{
             transition:"all 0.3s ease-in-out"});
     }
 
+    const handleAdd = () =>{
+     addToCart({id,name,price},()=>{
+       <Redirect to='/cart' />
+     })
+    }
+
+    const handleRemove = () =>{
+     //
+     }
+
     return (
         <div className="card" id='card' style={{width: "18rem"}} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
         <img src={getProductPhoto(id)} height='300px' className="card-img-top" alt="" />
@@ -50,8 +61,9 @@ const handleMouseOut = () =>{
         </div>
         </var>
        <div style={btnStyle}>
-          <a href="#" className="btn btn-primary"><ShoppingCartIcon/>ADD TO CART</a>
-        </div>
+         {isHome ? <button onClick={handleAdd} className="btn btn-primary"><ShoppingCartIcon/>ADD TO CART</button>
+          : <button onClick={handleRemove} className="btn btn-primary"><ShoppingCartIcon/>REMPOVE FROM CART</button>
+         }</div>
       </div>     
     )
 }
