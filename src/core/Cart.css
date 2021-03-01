@@ -26,12 +26,16 @@ background:  rgb(236, 236, 236);
 height: fit-content;
 width: fit-content;
 margin: auto auto;
+padding: 10px 20px;
+border-radius: 10px;
+
 }
 .center-block button{
     border: none;
     outline: none;
     background:  rgb(236, 236, 236);
     padding: 0 10px;
+    opacity: 0.6;
 }
 .right-block{
     display: flex;
