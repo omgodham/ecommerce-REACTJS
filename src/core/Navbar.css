@@ -3,6 +3,7 @@
     flex-direction: row;
     width: 90%;
     margin: 0 auto;
+    box-shadow: 0 0 10px grey;
 }
 .nav-container{
     list-style:none;
@@ -76,4 +77,15 @@
 display: flex;
 flex-direction: row;
 align-items: center;
+}
+
+.user-info h6{
+    color: black;
+    margin: auto 0;
+}
+.user-info :hover{
+  
+    cursor: pointer;
+     color: blue;
+
 }

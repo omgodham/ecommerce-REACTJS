@@ -1,19 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import './Cart.css';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { getProductPhoto } from '../admin/helper';
-import { removerProductFromCart } from './helper';
-
-export default function CartItem({ reload, setReload, id, name, price }) {
+// import { removerProductFromCart} from './helper';
+import {getProduct} from '../admin/helper';
+export default function CartItem({ reload, setReload, id , quantity}) {
 
     const [productCount, setProductCount] = useState(1);
-      
-    const removeFromCart = (id) => {
-        removerProductFromCart(id, () => {
-            setReload(!reload);
-            alert('successfully removed');
-        });
-    }
+    const [values,setValues] = useState({
+        name:'',
+        price:'',
+        error:false
+    });
+    const {name,price,error} = values;
+
+    useEffect(()=>{
+        // console.log(id);
+        getProduct(id).then(data => {
+            if(data.error) setValues({...values,error:data.error})
+            else
+            setValues({
+               ...values,
+                name:data.name,
+                price:data.price
+            });
+        })
+    },[]);
+
+    // const removeFromCart = (id) => {
+    //     removerProductFromCart(id, () => {
+    //         setReload(!reload);
+    //         alert('successfully removed');
+    //     });
+    // }
     const increment = () => {
         setProductCount(productCount + 1)
     }
@@ -32,13 +51,13 @@ export default function CartItem({ reload, setReload, id, name, price }) {
             <span>${price}.00</span>
         </div>
         <div className='center-block'>
-           {(productCount === 1) ? (<button>-</button>) :  (<button onClick={decrement}>-</button>) }  
-            <span>{productCount}</span>
+           {(quantity === 1) ? (<button>-</button>) :  (<button onClick={decrement}>-</button>) }  
+            <span>{quantity}</span>
             <button onClick={increment}>+</button>
         </div>
         <div className='right-block'>
-            <span>${productCount*price}.00</span>
-            <DeleteOutlineIcon className='delete-icon ml-4' onClick={() => removeFromCart(id)} />
+            <span>${quantity*price}.00</span>
+            {/* <DeleteOutlineIcon className='delete-icon ml-4' onClick={() => removeFromCart(id)} /> */}
         </div>
     </div>
 }

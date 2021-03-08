@@ -5,7 +5,7 @@ import Card from './Card';
 export default function CategoryProducts({match}) {
 
 const [products,setProducts] = useState([]);
-
+const [isLoading,setIsLoading] = useState(true);
 useEffect(()=>{
     if(match.params.category === 'sale' || match.params.category === 'new'){
       getAllProducts().then(data => {
@@ -20,8 +20,11 @@ useEffect(()=>{
             });    
         }); 
     } 
+    setIsLoading(false);
     },[products]);
-    
+    useEffect(()=>{
+      setIsLoading(true);
+    },[]);
 const getProducts = (id) =>{
     if(match.params.category !=='shoe')
       getProductsByCategory(id).then(data=>{
@@ -40,13 +43,15 @@ const getProducts = (id) =>{
           <h4>BEST FROM <span style={{textTransform:'uppercase'}}>{match.params.category}</span></h4>
           <h6>TOP PRODUCTS OF THIS WEEK</h6>
           <h3 className='text-left border-bottom' style={{textTransform:'uppercase'}}>{match.params.category+"("+products.length+")" }</h3>
-          <div className='row'>
+         { !isLoading ? (<div className='row'>
         {
             products.map((item,index) => {
                 return <Card key={index} id={item._id} name={item.name} className='col-md-4' price={item.price}/>
             })
         }
-          </div>   
+          </div>) : (<div class="spinner-border" role="status">
+  <span class="visually-hidden"></span>
+</div>) }  
         </div>
         </Base>
     )

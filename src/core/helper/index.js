@@ -29,3 +29,9 @@ if(typeof window !== "undefined"){
   next();
 }
 }
+
+export const removerAllProductFromCart = (next) =>{
+    if(typeof window !== "undefined")
+        localStorage.removeItem('cart');
+    next();
+    }

@@ -58,9 +58,10 @@ export const updateCategory = (userId,token,categoryId,category) =>{
 
 //get product by id
 export const getProduct = (productId) =>{
+    // console.log(productId);
     return fetch(`${API}/product/${productId}`,{
         method:'GET'
-    }).then(response => response.json())
+    }).then(response => response.json() )
     .catch(err => console.log(err))
 }
 

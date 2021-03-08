@@ -66,7 +66,7 @@ const performRedirect = (redirect) => {
            <SearchIcon className="i" onMouseOver={() => handleMouseOver('search')} onMouseOut={() => handleMouseOut('search')} />
             </div>
             <div  className='logo-info'>
-            <ShoppingCartIcon className="i" onMouseOver={() => handleMouseOver('cart')} onMouseOut={() => handleMouseOut('cart')} />
+           <Link to='/cart' style={{color:"black" , textDecoration: 'none'}} > <ShoppingCartIcon className="i" onMouseOver={() => handleMouseOver('cart')} onMouseOut={() => handleMouseOut('cart')}/></Link>
             <span style={{display: !cart ? "none" : "" }}>Cart</span>
             </div>
             {!isAuthenticated() && <div  className='logo-info user-info'>
@@ -74,7 +74,7 @@ const performRedirect = (redirect) => {
             {account && <span>My Account</span>}
         </div>}
             {isAuthenticated() && <div  className='logo-info user-info'>
-            <h6 style={{textTransform:'capitalize'}}>Welcome {isAuthenticated().user.name}</h6>
+            <Link to={isAuthenticated().user.role === 1 ? '/admin/dashboard' : '/user/dashboard'} style={{textDecoration:'none'}}><h6 style={{textTransform:'capitalize'}}>Welcome {isAuthenticated().user.name}</h6></Link>
         </div>}
         {isAuthenticated() && <div  className='logo-info user-info'>
             <ExitToAppIcon className="i" onClick={doLogout} onMouseOver={() => handleMouseOver('logout')} onMouseOut={() => handleMouseOut('logout')} />
