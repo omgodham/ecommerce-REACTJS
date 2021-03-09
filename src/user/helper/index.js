@@ -2,7 +2,7 @@ import {API} from '../../Backend';
 
 //add particular product in cart
 export const addProductInCart = (userId,token,product) =>{
-return fetch(`${API}/usr/cart/${userId}`,{
+return fetch(`${API}/user/cart/${userId}`,{
     method:'POST',
     headers:{
         Accept:'application/json',
@@ -28,7 +28,8 @@ export const getCartProduct = (userId,productId,token) =>{
 
 //update product in cart
 export const updateProductInCart = (userId,productId,token,product) => {
-    const {quantity} = product;
+    // const {quantity} = product;
+    // console.log(product);
     return fetch(`${API}/user/cart/${productId}/${userId}`,{
         method:'PUT',
         headers:{
@@ -36,7 +37,7 @@ export const updateProductInCart = (userId,productId,token,product) => {
             Authorization:`Bearer ${token}`,
             'Content-Type':'application/json'
         },
-        body:JSON.stringify({quantity})
+        body:JSON.stringify(product)
     }).then(response => response.json())
     .catch(err => console.log(err));
 }
@@ -63,3 +64,14 @@ return fetch(`${API}/user/cart/delete/${productId}/${userId}`,{
 }).then(response => response.json())
 .catch(err => console.log(err));
 }
+
+//delete all products from cart
+export const deleteAllProductsFormCart = (userId,token) => {
+    return fetch(`${API}/user/cart/${userId}`,{
+        method:'PUT',
+        headers:{
+            Authorization:`Bearer ${token}`
+        }
+    }).then(response => response.json())
+    .catch(err => console.log(err));
+    }

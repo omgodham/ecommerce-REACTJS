@@ -1,18 +1,24 @@
 import React, { useState , useEffect } from 'react';
 import './Cart.css';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-import { getProductPhoto } from '../admin/helper';
+import { getProductPhoto, updateProduct } from '../admin/helper';
 // import { removerProductFromCart} from './helper';
 import {getProduct} from '../admin/helper';
-export default function CartItem({ reload, setReload, id , quantity}) {
+import {isAuthenticated} from '../auth/helper' 
+import {deleteProductFromCart,updateProductInCart} from '../user/helper'
 
-    const [productCount, setProductCount] = useState(1);
+export default function CartItem({ reload, setReload, id , productQuantity ,total , getTotal}) {
+
+
+    const {user,token} = isAuthenticated();
+    
     const [values,setValues] = useState({
         name:'',
         price:'',
+        quantity:productQuantity,
         error:false
     });
-    const {name,price,error} = values;
+    const {name,price,error,quantity} = values;
 
     useEffect(()=>{
         // console.log(id);
@@ -24,21 +30,44 @@ export default function CartItem({ reload, setReload, id , quantity}) {
                 name:data.name,
                 price:data.price
             });
-        })
+        });
     },[]);
 
-    // const removeFromCart = (id) => {
-    //     removerProductFromCart(id, () => {
-    //         setReload(!reload);
-    //         alert('successfully removed');
-    //     });
-    // }
+    useEffect(() => {
+        getTotal(quantity*price);
+    },[name]);
+
+    useEffect(() => {
+        updateProduct(); 
+    }, [quantity]) //changes does not reflect in useState hooks hence instead of calling
+    //in incr and decr functions we have to call it in useEfffect
+
+    const removeFromCart = (id) => {
+        deleteProductFromCart(user._id,id,token).then(data => {
+            if(data.error) console.log(data.error)
+            else {
+                setReload(!reload);
+            }
+        })
+    }
     const increment = () => {
-        setProductCount(productCount + 1)
+        setValues({...values,quantity:quantity+1});
+        getTotal(price);
     }
 
     const decrement = () => {
-        setProductCount(productCount - 1)
+        setValues({...values,quantity:quantity-1});
+        getTotal(-price);
+    }
+
+
+    const updateProduct = () =>{  
+        updateProductInCart(user._id,id,token,{quantity}).then(data => {
+            if(data.error) console.log(data.error)
+            else {
+                setReload(!reload);
+            }
+        });
     }
 
 
@@ -57,7 +86,7 @@ export default function CartItem({ reload, setReload, id , quantity}) {
         </div>
         <div className='right-block'>
             <span>${quantity*price}.00</span>
-            {/* <DeleteOutlineIcon className='delete-icon ml-4' onClick={() => removeFromCart(id)} /> */}
+            <DeleteOutlineIcon className='delete-icon ml-4' onClick={() => removeFromCart(id)} />
         </div>
     </div>
 }

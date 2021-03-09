@@ -3,12 +3,13 @@ import React,{useEffect, useState} from 'react';
 import {Redirect} from 'react-router-dom'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { getProductPhoto } from "../admin/helper";
-import {addToCart} from './helper';
+//import {addToCart} from './helper';
+import {addProductInCart} from '../user/helper';
+import {isAuthenticated} from '../auth/helper'
 export default function Card({id,name='Name',price='$10',isHome=true}) {
+const {user,token} = isAuthenticated();
 
        const [flag,setFlag] = useState(false);
-    
-
        const [btnStyle,setBtnStyle] = useState({
         position: "absolute",
         bottom:"-50px",
@@ -41,10 +42,11 @@ const handleMouseOut = () =>{
             transition:"all 0.3s ease-in-out"});
     }
 
-    const handleAdd = () =>{
-     addToCart({id,name,price},()=>{
-       <Redirect to='/cart' />
-     })
+    const handleAdd = () => {
+      addProductInCart(user._id,token,{product:id}).then(data=>{
+        if(data.error) console.log(data)
+        else <Redirect to='/cart' />
+      });
     }
 
     const handleRemove = () =>{
