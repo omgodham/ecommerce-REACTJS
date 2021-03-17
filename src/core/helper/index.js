@@ -1,37 +1,12 @@
-export const addToCart = (product,next) =>{
-let cart = [] ;
-if(typeof window !== "undefined"){  
-    if(localStorage.getItem('cart'))
-           cart = JSON.parse(localStorage.getItem('cart'));
-        cart.push(product);
-         localStorage.setItem('cart',JSON.stringify(cart));
+import {API} from '../../Backend';
+export const makePayment = async (products) => {
+// console.log(products);
+    return fetch(`${API}/create-checkout-session`,{
+    method:'POST',
+    headers:{
+        Accept:'application/json',     
+        'Content-Type':'application/json',
+    },
+    body:JSON.stringify(products)
+}).then(response => response.json()).catch(err => console.log(err));
 }
-// console.log(cart);
-next();
-} 
-
-export const getCartItems = () =>{
-    let cart = [];
-    if(typeof window !== "undefined"){
-        cart = localStorage.getItem('cart');
-    }
-    return JSON.parse(cart);
-}
-
-export const removerProductFromCart = (id,next) =>{
-let cart = [];
-if(typeof window !== "undefined"){
-    cart = JSON.parse(localStorage.getItem('cart'));
-    cart = cart.filter((product,index) => {
-      return product.id !== id;
-  })
-  localStorage.setItem('cart',JSON.stringify(cart));
-  next();
-}
-}
-
-export const removerAllProductFromCart = (next) =>{
-    if(typeof window !== "undefined")
-        localStorage.removeItem('cart');
-    next();
-    }

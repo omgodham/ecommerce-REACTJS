@@ -9,14 +9,46 @@ import img1 from '../home/img1.jpg';
 import img2 from '../home/img2.jpg';
 import video from "../home/video.mp4";
 import {getAllProducts} from "../admin/helper/index";
-import {isAuhtenticated} from "../auth/helper/index";
+import {deleteAllProductsFormCart} from "../user/helper";
+import {isAuthenticated} from "../auth/helper/index";
+import { Redirect } from 'react-router';
+
 export default function Home() {
 const [products,setProducts] = useState([]);
-//const {user,token} = isAuthenticated();
+const {user,token} = isAuthenticated();
 const [error,setError] = useState(false);
+const [redirect,setRedirect] = useState(false);
 useEffect(() => {
 getProducts();
 },[]);
+
+useEffect(()=>{
+  const query = new URLSearchParams(window.location.search);
+
+  if (query.get("success")) {
+    alert('Order Successfully created');
+    setRedirect(true);
+    removeAllProductsFromCart();
+  }
+
+  if (query.get("canceled")) {
+    alert('Order Canceled');
+    setRedirect(true);
+  }
+},[]);
+
+const doRedirect = (redirect) => {
+  return redirect && <Redirect to = '/' />
+}
+
+const removeAllProductsFromCart = () => {
+  deleteAllProductsFormCart(user._id,token).then(data => {
+    if(data.error) console.log(data.error);
+    else {
+     console.log('cart empty');
+    }
+  });
+}
 
 
 const getProducts = () => {
@@ -114,7 +146,7 @@ const ShowCarousel = () =>{
         }
           </div>   
         </div>
-
+        {doRedirect(redirect)}
         </Base>
     )
 }

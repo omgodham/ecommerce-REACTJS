@@ -21,7 +21,6 @@ export default function CartItem({ reload, setReload, id , productQuantity ,tota
     const {name,price,error,quantity} = values;
 
     useEffect(()=>{
-        // console.log(id);
         getProduct(id).then(data => {
             if(data.error) setValues({...values,error:data.error})
             else
