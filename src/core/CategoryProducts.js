@@ -49,8 +49,8 @@ const getProducts = (id) =>{
                 return <Card key={index} id={item._id} name={item.name} className='col-md-4' price={item.price}/>
             })
         }
-          </div>) : (<div class="spinner-border" role="status">
-  <span class="visually-hidden"></span>
+          </div>) : (<div className="spinner-border" role="status">
+  <span className="visually-hidden"></span>
 </div>) }  
         </div>
         </Base>

@@ -9,7 +9,7 @@ import {getCart,deleteAllProductsFormCart} from '../user/helper';
 import {isAuthenticated} from '../auth/helper';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import CartItem from './CartItem';
-import {makePayment} from './helper';
+import {makePayment } from './helper';
 
 export default function Cart() {
   const [products,setProducts] = useState([]);
@@ -17,9 +17,6 @@ export default function Cart() {
   const [total,setTotal] = useState(0);
   // const [redirect,setRedirect] = useState(false);
   const {user,token} = isAuthenticated();
-  const [transactionId,setTransactionId] = useState(undefined);
-
-  
 
   useEffect(()=>{
     getCart(user._id,token).then(data => {
@@ -45,14 +42,19 @@ export default function Cart() {
   const handleClick = async () => {
     const stripe = await loadStripe(process.env.REACT_APP_PUBLISHABLE_KEY);
     const data = await makePayment(products);
-    setTransactionId(data.id);
+    // setTransactionId(data.id);
     console.log(data);
-    localStorage.setItem('transactionId',JSON.stringify(data));
-        const result = await stripe.redirectToCheckout({
+    localStorage.setItem('order',JSON.stringify({
+      products:products,
+      amount:total,
+      transaction_id:data.id,
+      user:user._id
+    }));
+  
+       const result = await stripe.redirectToCheckout({
           sessionId: data.id
         });
       }
-
 
     return (<Base title = 'SHOPPING CART'>
           {products.length !== 0  ? products.map((thisProduct,index) => {

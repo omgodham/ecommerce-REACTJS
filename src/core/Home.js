@@ -11,6 +11,7 @@ import video from "../home/video.mp4";
 import {getAllProducts} from "../admin/helper/index";
 import {deleteAllProductsFormCart} from "../user/helper";
 import {isAuthenticated} from "../auth/helper/index";
+import {createOrder} from "./helper";
 import { Redirect } from 'react-router';
 
 export default function Home() {
@@ -26,9 +27,16 @@ useEffect(()=>{
   const query = new URLSearchParams(window.location.search);
 
   if (query.get("success")) {
+    const orderData = JSON.parse(localStorage.getItem('order'));
+    // console.log(orderData);
+    createOrder(user._id,orderData,token).then(data => {
+      if(data.error) console.log(data.error);
+    }).catch(err => console.log(err));
+    localStorage.removeItem('order');
     alert('Order Successfully created');
     setRedirect(true);
     removeAllProductsFromCart();
+
   }
 
   if (query.get("canceled")) {

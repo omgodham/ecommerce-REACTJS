@@ -145,3 +145,35 @@ export const deleteCategory = (userId,token,categoryId) =>{
     }).then(response => response.json())
     .catch(err => console.log(err))
 }
+
+//get all orders
+export const getAllOrders = (userId,token) =>{
+    return fetch(`${API}/orders/${userId}`,{
+        method:'GET',
+        headers:{
+            Authorization:`Bearer ${token}`
+        }
+    }).then(response => response.json())
+    .catch(err => console.log(err))
+}
+
+//update order status
+export const updateOrderStatus = (orderId,userId,status,token) =>{
+    return fetch(`${API}/order/${orderId}/${userId}`,{
+    method:'PUT',
+    headers:{
+        Accept:'application/json',
+        'Content-Type':'application/json',
+        Authorization:`Bearer ${token}`
+    },
+    body:JSON.stringify(status)
+}).then(response => response.json())
+.catch(err => console.log(err))
+}
+
+export const getUser = (userId) =>{
+    return fetch(`${API}/user/${userId}`,{
+        method:'GET'
+    }).then(response => response.json())
+    .catch(err => console.log(err))
+}
