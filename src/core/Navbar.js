@@ -8,8 +8,9 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import {isAuthenticated,signout} from '../auth/helper/index';
 
-export default function Navbar() {
+export default function Navbar({reload,setReload}) {
 
+    const [searchQuery , setSearchQuery] = useState('');
 const [boolean,setBoolean] = useState({
     cart:false,
     account:false,
@@ -17,12 +18,15 @@ const [boolean,setBoolean] = useState({
     accountBlock:false
 });
 const [redirect,setRedirect] = useState(false);
-const {cart,account,accountBlock,logout} = boolean;
+const {cart,account,accountBlock,logout,search} = boolean;
 // const [auth,setAuth] = useState(false);
 // useEffect(()=>{
 //     setAuth(isAuthenticated());
 //     // console.log(auth);
 // },[]);
+const handleChange = (event) => {
+setSearchQuery(event.target.value);
+}
 
 const handleMouseOver = (name) =>{
     setBoolean({...boolean,[name]:true});
@@ -62,8 +66,8 @@ const performRedirect = (redirect) => {
             </div>
             <div className='right-content'>
            <div className='logo-info search'>
-           <input type='search' className='form-control' placeholder='Search' />
-           <SearchIcon className="i" onMouseOver={() => handleMouseOver('search')} onMouseOut={() => handleMouseOut('search')} />
+           <input type='search' className='form-control' value={searchQuery} placeholder='Search' onChange={handleChange}/>
+           <Link to={`/products?q=${searchQuery}`} style={{color:"black" , textDecoration: 'none'}} > <SearchIcon className="i" onMouseOver={() => handleMouseOver('search')} onMouseOut={() => handleMouseOut('search')} onClick={()=> setReload(!reload) }/></Link>
             </div>
             <div  className='logo-info'>
            <Link to='/cart' style={{color:"black" , textDecoration: 'none'}} > <ShoppingCartIcon className="i" onMouseOver={() => handleMouseOver('cart')} onMouseOut={() => handleMouseOut('cart')}/></Link>

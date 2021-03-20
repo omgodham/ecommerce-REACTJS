@@ -7,7 +7,7 @@ import {getProduct} from '../admin/helper';
 import {isAuthenticated} from '../auth/helper' 
 import {deleteProductFromCart,updateProductInCart} from '../user/helper'
 
-export default function CartItem({ reload, setReload, id , productQuantity ,total , getTotal}) {
+export default function CartItem({  setReload,reload, id , productQuantity ,total , getTotal}) {
 
 
     const {user,token} = isAuthenticated();

@@ -171,6 +171,17 @@ export const updateOrderStatus = (orderId,userId,status,token) =>{
 .catch(err => console.log(err))
 }
 
+//get orders for particular user
+export const getOrdersByUserId = (userId,token) =>{
+    return fetch(`${API}/orders/user/${userId}`,{
+        method:'GET',
+        headers:{
+            Authorization:`Bearer ${token}`
+        }
+    }).then(response => response.json())
+    .catch(err => console.log(err))
+}
+
 export const getUser = (userId) =>{
     return fetch(`${API}/user/${userId}`,{
         method:'GET'

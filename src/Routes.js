@@ -1,5 +1,5 @@
 import React from 'react'
-import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
+import {BrowserRouter as Router,Route,Switch } from 'react-router-dom';
 import Home from './core/Home';
 import PrivateRoute from './auth/helper/PrivateRoute';
 import AdminRoute from './auth/helper/AdminRoute';
@@ -18,11 +18,13 @@ import ManageOrders  from './admin/ManageOrders';
 import CategoryProducts from './core/CategoryProducts';
 import Cart from './core/Cart';
 import Result from './core/Result';
+import Products from './core/Products';
 export default function Routes() {
     return (
         <Router>
         <Switch>
             <Route exact path='/' component={Home} />
+            <Route exact path='/products' component={Products} />
             <Route exact path='/signin' component={SignIn} />
             <Route exact path='/signup' component={SignUp} />
             <Route exact path='/result' component={Result} />

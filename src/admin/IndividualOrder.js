@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 import { getProduct, getUser ,updateOrderStatus } from "./helper/index";
 import { isAuthenticated } from "../auth/helper";
-export default function IndividualOrder({order,products}) {
+export default function IndividualOrder({order,products , reload , setReload }) {
   const { user, token } = isAuthenticated();
   const [name, setName] = useState("");
   const [status, setStatus] = useState("");
@@ -32,7 +32,9 @@ export default function IndividualOrder({order,products}) {
           status:event.target.value
         },token).then(data => {
           if(data.error) console.log(data.error)
-        else console.log('updated');
+        else {
+          setReload(!reload);
+        }
       })
       }
 
@@ -51,7 +53,7 @@ export default function IndividualOrder({order,products}) {
                     </ul>
                   </div>
                   <div className="col-md-4">
-                    <select onChange={handleChange}>
+                    <select onChange={handleChange} value={order.status}>
                       <option value='Received'>Received</option>
                       <option value='Deliverd'>Deliverd</option>
                       <option value='Shipped'>Shipped</option>
