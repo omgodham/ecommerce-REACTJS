@@ -110,7 +110,7 @@ const ShowCarousel = () =>{
 
     return (
         <Base title=''>
-        {/* {ShowCarousel()} */}
+        {ShowCarousel()}
         <div className='categories mt-4'>
           <div className='left-one'>
               <div className='sale'>

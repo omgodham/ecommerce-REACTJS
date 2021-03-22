@@ -15,7 +15,8 @@ useEffect(()=>{
    else {
        getAllCategories().then(data => {
             data.map((category,index) => {
-                    if((category.name).toLowerCase() === match.params.category)
+              const param = match.params.category === 'accessories' ? 'watch' : match.params.category;
+                    if((category.name).toLowerCase() === param)
                         getProducts(category._id);
             });    
         }); 
@@ -25,14 +26,15 @@ useEffect(()=>{
     useEffect(()=>{
       setIsLoading(true);
     },[]);
+
 const getProducts = (id) =>{
-    if(match.params.category !=='shoe')
+    if(match.params.category !=='shoe' && match.params.category !=='accessories' )
       getProductsByCategory(id).then(data=>{
         setProducts(data);
     });
     else
     {
-   getProductsBySubCategory(id).then(data => {
+      getProductsBySubCategory(id).then(data => {
        setProducts(data);
    });
     }

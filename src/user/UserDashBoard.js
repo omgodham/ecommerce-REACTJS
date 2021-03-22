@@ -52,6 +52,8 @@ export default function UserDashBoard() {
         <h4>Amount:{order.amount}</h4>
         {order.status !== 'Cancelled' && <h4 className='text-primary p-2'>{order.status}</h4>}
         {order.status == 'Cancelled' ? <h4 className='text-danger ml-2'>Order Cancelled </h4> : <button className='btn btn-outline-warning m-2' onClick={handleDelete} style={{height:'40px'}}>Cancel Order</button>}
+       
+        
         </div>
     }
 

@@ -1,6 +1,6 @@
 import React,{useEffect} from 'react'
 import Navbar from './Navbar';
-export default function Base({children,title='This is the title' , reload , setReload}) {
+export default function Base({children,title='This is the title' , reload , setReload = f => f}) {
     return (
         <div className='text-center'>
         <Navbar reload={reload} setReload={setReload}/>
