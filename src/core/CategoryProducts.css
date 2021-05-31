@@ -1,0 +1,9 @@
+h3{
+text-transform: uppercase;
+text-align: left;
+color: var(--main);
+width: 95%;
+margin: 0 auto;
+font-size: 24px !important;
+padding: 10px 0; 
+}

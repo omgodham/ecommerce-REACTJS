@@ -31,7 +31,7 @@ const {user} = isAuthenticated();
                     </ul>
                 </div>
                 <div className='admin-info'>
-                    <h3 style={{ position: 'absolute', top: '10px' }}>Admin Info</h3>
+                    <h3>Admin Info</h3>
                     <span className="badge badge-primary">Name : </span><h5 style={{textTransform:'capitalize'}}>{user.name}</h5>
                     <span className="badge badge-primary">Email : </span> <p>{user.email}</p>
                     <span className="badge badge-success">You are Admin</span>

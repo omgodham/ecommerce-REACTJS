@@ -58,7 +58,6 @@ export default function Cart() {
 
     return (<Base title = 'SHOPPING CART'>
           {products.length !== 0  ? products.map((thisProduct,index) => {
-            console.log('in map');
             return <CartItem key={index} reload={reload} setReload={setReload} id={thisProduct.product} productQuantity={thisProduct.quantity} total={total} getTotal={getTotal}/>
           }) : <h1 className='text-danger'>No Products In Cart</h1>}
           { products.length !== 0 && <div className='delete-section' >

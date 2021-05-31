@@ -2,7 +2,7 @@
 width: 90%;
 margin: 10px auto;
 display:grid;
-grid-template-columns: 0.3fr 0.7fr;
+grid-template-columns: 0.5fr 1fr;
 box-shadow: 0px 0px 3px black;
 padding: 5px;
 }
@@ -10,9 +10,13 @@ padding: 5px;
     list-style: none;
 }
 .admin-info{
-    position: relative;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+.admin-info h3{
+    width: fit-content;
+    border-bottom: 2px solid blanchedalmond;
 }

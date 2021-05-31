@@ -16,20 +16,21 @@ export default function Products() {
   useEffect(() => {
     
      getAllProducts().then(data => {
-        setProducts([]);
+      setProducts([]);
          if(data.error) console.log(data.error) 
          else
          data.map((product, index) => {
-             console.log(product);
-            if (product.name.toLowerCase() == search.toLowerCase()) {
+            //  console.log(product);
+            if (product.name.toLowerCase().includes(search.toLowerCase())) {
               setProducts(products => [...products, product]);
             }
           });
      });
+  console.log(reload);
   }, [reload]);
 
 const fun = () => {
-    return <div className="row container">
+    return <div className="products-container">
     {products.length ? (
       products.map((item, index) => {
         return (

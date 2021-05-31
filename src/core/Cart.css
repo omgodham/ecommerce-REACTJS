@@ -1,20 +1,17 @@
 .cart{
     display: grid;
-    grid-template-columns: 0.35fr 0.20fr 0.20fr 0.30fr;
+    grid-template-columns: 0.20fr 0.70fr 0.10fr;
     padding: 5px;
     border-bottom:1px solid rgba(0,0,0,0.3);
     border-top:1px solid rgba(0,0,0,0.3);
    width: 90%;
    margin: 5px auto;
    font-weight: 600;
-}
-.left-block{
-    display: flex;
-    align-items: center;
+   
 }
 .left-block img{
-    height: 150px;
-    width: 120px;
+    height: 100px;
+    width: 80px;
 }
 .price{
     display: flex;
@@ -22,13 +19,11 @@
     justify-self: center;
 }
 .center-block{
-background:  rgb(236, 236, 236);
-height: fit-content;
-width: fit-content;
-margin: auto auto;
-padding: 10px 20px;
-border-radius: 10px;
-
+display: grid;
+grid-template-columns: 0.3fr 0.2fr 0.3fr 0.2fr;
+}
+.center-block p , span{
+margin: auto 0;    
 }
 .center-block button{
     border: none;
@@ -36,11 +31,19 @@ border-radius: 10px;
     background:  rgb(236, 236, 236);
     padding: 0 10px;
     opacity: 0.6;
+
 }
+.quantity-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
 .right-block{
     display: flex;
     align-items: center;
-    justify-self: center;
+    justify-content: center;
 }
 .delete-icon:hover{
     cursor: pointer;
@@ -64,4 +67,29 @@ border-radius: 10px;
   width: fit-content;
   margin: 10px auto;
   font-weight: 600;
+}
+
+@media screen and (max-width:570px) {
+    .left-block img{
+        height: 120px;
+        width: 90px;
+    }
+    .center-block{
+        padding-left: 40px;
+        width: 50%;
+        display: grid;
+        grid-template-columns: auto;
+        grid-row-gap: 10px;
+        }
+}
+
+@media screen and (max-width:320px) {
+
+    .center-block{
+        padding-left: 20px;
+        width: 50%;
+        display: grid;
+        grid-template-columns: auto;
+        grid-row-gap: 10px;
+        }
 }

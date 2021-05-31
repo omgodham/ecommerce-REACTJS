@@ -1,0 +1,18 @@
+.categories-container{
+    width: 90%;
+    margin: 0 auto;
+}
+.category{
+    display: grid;
+    grid-template-columns: repeat(3,0.33fr);
+    grid-column-gap: 8px;
+    margin: 10px 0;
+    padding:5px;
+    box-shadow: 0px 0px 2px gray;
+}
+
+@media screen and (max-width:340px) {
+    .category h4{
+        font-size: 18px;
+    }
+}

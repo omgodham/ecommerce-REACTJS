@@ -73,18 +73,21 @@ export default function CartItem({  setReload,reload, id , productQuantity ,tota
     return <div className='cart' >
         <div className='left-block'>
             <img src={getProductPhoto(id)} />
-            <p className='ml-2'>{name}</p>
         </div>
-        <div className='price'>
-            <span>${price}.00</span>
-        </div>
+     
         <div className='center-block'>
+        <p className='ml-2'>{name}</p>
+       
+            <span>${price}.00</span>
+       
+        <div className='quantity-section'>
            {(quantity === 1) ? (<button>-</button>) :  (<button onClick={decrement}>-</button>) }  
             <span>{quantity}</span>
             <button onClick={increment}>+</button>
+           </div> 
+            <span>${quantity*price}.00</span>
         </div>
         <div className='right-block'>
-            <span>${quantity*price}.00</span>
             <DeleteOutlineIcon className='delete-icon ml-4' onClick={() => removeFromCart(id)} />
         </div>
     </div>

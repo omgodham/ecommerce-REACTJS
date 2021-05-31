@@ -5,9 +5,6 @@ import '../styles.css';
 import "./Home.css";
 import Card from './Card';
 import Carousel from 'react-bootstrap/Carousel';
-import img1 from '../home/img1.jpg';
-import img2 from '../home/img2.jpg';
-import video from "../home/video.mp4";
 import {getAllProducts} from "../admin/helper/index";
 import {deleteAllProductsFormCart} from "../user/helper";
 import {isAuthenticated} from "../auth/helper/index";
@@ -17,8 +14,10 @@ import { Redirect } from 'react-router';
 export default function Home() {
 const [products,setProducts] = useState([]);
 const {user,token} = isAuthenticated();
-const [error,setError] = useState(false);
+const [isLoading, setIsLoading] = useState(true);
 const [redirect,setRedirect] = useState(false);
+const [error,setError] = useState(false);
+
 useEffect(() => {
 getProducts();
 },[]);
@@ -66,16 +65,17 @@ getAllProducts().then(data =>{
   else
   setProducts(data);
 }).catch(err => console.log(err))
+setIsLoading(false);
 }
 
 const ShowCarousel = () =>{
     return <Carousel className='carousel'>
-    <Carousel.Item className='carousel-item'>
+    <Carousel.Item>
       <img
-        src={img1} 
+        src='\images\img1.jpg' 
         alt="First slide"
       />
-      <Carousel.Caption>
+      <Carousel.Caption className='captions'>
         <button className='btn btn-primary'>SHOP NOW</button>
         <p style={{color:'black',fontWeight:'900'}}>BRAND NEW STYLISH PRODUCTS ON SALE</p>
       </Carousel.Caption>
@@ -83,7 +83,7 @@ const ShowCarousel = () =>{
     
     <Carousel.Item>
       <img
-        src={img2}
+        src='\images\img2.jpg' 
         alt="Second slide"
       />  
       <Carousel.Caption>
@@ -92,16 +92,15 @@ const ShowCarousel = () =>{
       </Carousel.Caption>
     </Carousel.Item>
 
-    <Carousel.Item>
+    <Carousel.Item className='video-item'>
       <div>
       <video autoPlay muted controls loop>
-  <source src={video} type="video/mp4" />
-  Your browser does not support the video tag.
+  <source src='\images\video.mp4'  type="video/mp4" />
 </video>
   </div>
-  <Carousel.Caption>
+  <Carousel.Caption  className='video-item'>
       <button className='btn btn-warning'>SHOP NOW</button>
-      <p style={{color:'white',fontWeight:'900'}}>EXPLORE OUR SHOP IN THIS CITIES</p>
+      <p style={{color:'white',fontWeight:'500'}}>EXPLORE OUR SHOP IN THIS CITIES</p>
       </Carousel.Caption>
     </Carousel.Item>
   </Carousel>
@@ -111,49 +110,55 @@ const ShowCarousel = () =>{
     return (
         <Base title=''>
         {ShowCarousel()}
+
         <div className='categories mt-4'>
           <div className='left-one'>
               <div className='sale'>
                 <img src='https://cdn.shopify.com/s/files/1/0130/5041/3114/files/demo01_03_650x.jpg?v=1542298540' alt=""/>
-                 <Link to='/collections/sale' className='btn btn-info btn-lg'>SALE</Link>
+                 <Link to='/collections/sale' className='btn btn-info'>SALE</Link>
               </div>
               <div className='new'>
               <img src='https://cdn.shopify.com/s/files/1/0130/5041/3114/files/demo01_04_325x.jpg?v=1542298540' />
-              <Link to='/collections/new' className='btn btn-info btn-lg'>NEW</Link>
+              <Link to='/collections/new' className='btn btn-info'>NEW</Link>
               </div>
           </div>
           <div className='center-one women'>
           <img src='https://cdn.shopify.com/s/files/1/0130/5041/3114/files/demo01_06_325x.jpg?v=1542298540' />
-          <Link to='/collections/women' className='btn btn-info btn-lg'>WOMEN</Link>
+          <Link to='/collections/women' className='btn btn-info'>WOMEN</Link>
           </div>
           <div className='right-one'>
           <div className='right-top'>
             <div className='men'>
             <img src='https://cdn.shopify.com/s/files/1/0130/5041/3114/files/demo01_05_325x.jpg?v=1542298540' />
-            <Link to='/collections/men' className='btn btn-info btn-lg'>MEN</Link>
+            <Link to='/collections/men' className='btn btn-info'>MEN</Link>
             </div>
             <div className='accessories'>
             <img src='https://cdn.shopify.com/s/files/1/0130/5041/3114/files/demo01_07_325x.jpg?v=1542298540' />
-            <Link to='/collections/accessories' className='btn btn-info btn-lg'>ACCESSORIES</Link>
+            <Link to='/collections/accessories' className='btn btn-info'>ACCESSORIES</Link>
             </div>
           </div>
           <div className='right-bottom'>
           <img src='https://cdn.shopify.com/s/files/1/0130/5041/3114/files/demo01_08_669x.jpg?v=1542298540' />
-          <Link to='/collections/shoe' className='btn btn-info btn-lg'>SHOES</Link>
+          <Link to='/collections/shoe' className='btn btn-info'>SHOES</Link>
           </div>
           </div>
         </div>
-          <div className='container-fluid pb-5 text-center' style={{backgroundColor:"white",width:'95%',margin:"20px auto"}}>
+
+          <div className='products-area text-center'>
           <h4>BEST SELLER</h4>
           <h6>TOP PRODUCTS OF THIS WEEK</h6>
-          <div className='row'>
-        {
-            products.map((item,index) => {
-                return <Card key={index} id={item._id} name={item.name} className='col-md-4' price={item.price} isHome={true}/>
+          {!isLoading ? (<div className='products-container'>
+          {
+            products.map((item, index) => {
+              return <Card key={index} id={item._id} name={item.name} className='col-md-4' price={item.price} />
             })
+          }
+        </div>) : (<div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden"></span>
+        </div>)
         }
           </div>   
-        </div>
+  
         {doRedirect(redirect)}
         </Base>
     )
